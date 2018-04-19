@@ -73,42 +73,45 @@ object Example_Seasonality {
     // 세트 타입으로 변환
     var productSet = productArray.toSet
 
-    var resultRdd = filteredRdd.filter(x=>{
-      var checkValid = true
-
+    var resultRdd = filteredRdd.filter(x=> {
+      var checkValid = false
       // 데이터 특정 행의 product 컬럼인덱스를 활용하여 데이터 대입
       var productInfo = x.getString(productNo);
 
-      if(productSet.contains(productInfo)){
+      if (productSet.contains(productInfo)) {
         checkValid = true
       }
 
-      checkValid
-    })
-
-
-    // 디버깅 ase #2 (타겟팅 대상 선택)
-    var rawExRdd2 = rawRdd.filter(x=>{
-      var checkValid = false
-      if( (x.getString(accountidNo) == "A60") &&
-        (x.getString(productNo) == "PRODUCT34") &&
-        (x.getString(yearweekNo) == "201402")){
+      // 2번째 답!!!
+      if ((productInfo == "PRODUCT1") || //productArray(0)
+        (productInfo == "PRODUCT2")) { //productArray(1)
         checkValid = true
       }
       checkValid
     })
 
-    // 디버깅 Case #2 (타겟팅 대상 선택)
-    var rawExRdd2 = rawRdd.filter(x=>{
-      var checkValid = false
-      if( (x.getString(accountidNo) == "A60") &&
-        (x.getString(productNo) == "PRODUCT34") &&
-        (x.getString(yearweekNo) == "201402")){
-        checkValid = true
-      }
-      checkValid
-    })
-
+//
+//    // 디버깅 ase #2 (타겟팅 대상 선택)
+//    var rawExRdd2 = rawRdd.filter(x=>{
+//      var checkValid = false
+//      if( (x.getString(accountidNo) == "A60") &&
+//        (x.getString(productNo) == "PRODUCT34") &&
+//        (x.getString(yearweekNo) == "201402")){
+//        checkValid = true
+//      }
+//      checkValid
+//    })
+//
+//    // 디버깅 Case #2 (타겟팅 대상 선택)
+//    var rawExRdd2 = rawRdd.filter(x=>{
+//      var checkValid = false
+//      if( (x.getString(accountidNo) == "A60") &&
+//        (x.getString(productNo) == "PRODUCT34") &&
+//        (x.getString(yearweekNo) == "201402")){
+//        checkValid = true
+//      }
+//      checkValid
+//    })
 
   }
 
