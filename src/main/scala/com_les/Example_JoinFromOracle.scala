@@ -1,5 +1,7 @@
 package com_les
 
+import org.apache.spark.sql.SparkSession
+
 object Example_JoinFromOracle {
   def main(args: Array[String]): Unit = {
 
